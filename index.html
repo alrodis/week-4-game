@@ -1,20 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>CrystalsCollector</title>
-	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <title>CrystalsCollector</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
+<!-- 						Pseudocode:
+					Objective of game: 
+Random number is given at start of game.  Click on one of four crystals to add a specific amount of points to your score.  Win by matchng your point to random number, lose by going over random number.  
+						Gameplay:
+-Need to generate a random number between 19-120 at start of game
+-Need to generate a random number between 1-12 when a user clicks on any one of the four crystals
+-With each click on a crystal:
+	-Need to increment sum of each user click for a "total score"
+	-Show the incremented value of each click in the "total score"
+	-Compare the "total score" to the random number generated at start of game
+						End of game:
+-If the total score = the random number
+	-User wins - a win is incremented by 1 to "wins" on scoreboard, message pops up, "You win!"
+-If the total score > the random number
+	-User loses - a loss is incremented by 1 to "losses" on the scoreboard, message pops up, "You lost!"
+-Once the user has either won or lost, the game starts over
+	-total score is reset to zero
+	-a new random number is generated to start a new game
+	-all crystals will have new hidden values
+	-total wins and losses should persist on the scoreboard, so do not refresh game to start over
+ -->
+
+
 <body>
-	
-<div>
-	<h1>Crystals Collector!</h1>
+    <div id="main container" class="container">
+        <div class="jumbotron">
+            <h1>Crystals Collector!</h1>
+            <p>You will be given a random number at the start of the game</p>
+            <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total score</p>
+            <hr class="my-4">
+            <p>You win the game by matching your total score to a random number, you lost the game if your total score goes above the random number</p>
+            <p>The value of each crystal is hidden from you until you click on it</p>
+            <p>Each time when the game starts, the game will change the values of each crystal</p>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+            	<!-- random number generated between 19-120 at start of game -->
+            	<p id="randomNum"></p>
+            </div>
+            <div id="scoreboard" class="col-md-4">
+                <p id="wins"></p>
+                <p>Wins</p>
+                <p id="losses"></p>
+                <p>Losses</p>
+            </div>
+        </div>
+        <!-- each crystal will have a random value generated between 1-12 when clicked on the image -->
+        <div class="row">
+            <div class="col-md-3">
+                <img class="crystal-image" src="assets/images/red.jpg" alt="red crystal">
+            </div>
+            <div class="col-md-3">
+                <img class="crystal-image" src="assets/images/blue.png" alt="blue crystal">
+            </div>
+            <div class="col-md-3">
+                <img class="crystal-image" src="assets/images/yellow.png" alt="yellow crystal">
+            </div>
+            <div class="col-md-3">
+                <img class="crystal-image" src="assets/images/green.png" alt="green crystal">
+            </div>
+        </div>
+        <div class="row">
+        	<div id="totalScore" class="col-md-8">
+        		<p>Your total score is:</p>
+        	</div>
+        </div>
+        <!-- User score will be tracked here -->
+        <div class="row">
+        	<div class="col-md-8">
+        		<p id="userScore"></p>
+        	</div>
+        </div>
 
 
-</div>
 
-<script src="assets/javascript/game.js"></script>
 
+
+
+
+
+
+
+    </div>
+    <script src="assets/javascript/game.js"></script>
 </body>
+
 </html>
