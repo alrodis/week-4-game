@@ -2,8 +2,9 @@ $(document).ready(function(){
     
 // function to generate random number between 19-120 to start game
 var targetNumber = 0;
+
 function pageLoadRandom() {
-	var targetNumber = Math.floor((Math.random() * 102) + 19);
+	targetNumber = Math.floor((Math.random() * 102) + 19);
 	$("#randomNum").text(targetNumber);
 	console.log("pageload random number= " + targetNumber);
 }
@@ -51,21 +52,57 @@ $("#green").on("click",function() {
 });
 
 // conditional function to check current score vs target number
+// how do I increment wins & losses?
+var wins = 0;
+var losses = 0;
 function winLose () {
 	if (currentScore === targetNumber) {
 		$("#wins").html("you win!");
 		alert("You win!");
+		wins = wins+1
+		$("#winCount").html(wins);
+		reset();
 	}
 	else if (currentScore >= targetNumber) {
 		$("#losses").html("you lose!");
-		alert("You lose!")
+		alert("You lose!"+currentScore + "  " + targetNumber)
+		losses = losses+1
+		$("#lossCount").html(losses);
+		reset();
 	}
+
 }
 
 
 
+// function to reset game
+// -----------------------
+function reset () {
+	pageLoadRandom();
+	currentScore=0;
+	$("#userScore").html(currentScore);
+	red = Math.floor((Math.random() * 12) + 1);
+	blue = Math.floor((Math.random() * 12) + 1);
+	yellow = Math.floor((Math.random() * 12) + 1);
+	green = Math.floor((Math.random() * 12) + 1);
+
+}
+
+
+
+// function to initalize game
+// ---------------------------
+// function initialize() {
+
+// }
+
 });
 
+
+// --------------------------------------------------------------
+// I was creating various functions to see how I could make the game 
+// work at the beginning of the project.  I kept my notes below for reference.
+// ----------------------------------------------------------------
 
 // Below is code for generating a random number with a function using JS.  
 // This function works and it does pass the random number into the proper div
