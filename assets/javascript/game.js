@@ -1,100 +1,90 @@
-$(document).ready(function(){
-    
-// function to generate random number between 19-120 to start game
-var targetNumber = 0;
+$(document).ready(function() {
 
-function pageLoadRandom() {
-	targetNumber = Math.floor((Math.random() * 102) + 19);
-	$("#randomNum").text(targetNumber);
-	console.log("pageload random number= " + targetNumber);
-}
+    // function to generate random number between 19-120 to start game
+    var targetNumber = 0;
 
-pageLoadRandom();
+    function pageLoadRandom() {
+        targetNumber = Math.floor((Math.random() * 102) + 19);
+        $("#randomNum").text(targetNumber);
+        console.log("pageload random number= " + targetNumber);
+    }
 
+    pageLoadRandom();
 
-// variables to store current score & generate random numbers for each crystal
-var currentScore=0;
-var red = Math.floor((Math.random() * 12) + 1);
-var blue = Math.floor((Math.random() * 12) + 1);
-var yellow = Math.floor((Math.random() * 12) + 1);
-var green = Math.floor((Math.random() * 12) + 1);
+    // variables to store current score & store and generate random numbers for each crystal
+    var currentScore = 0;
+    var red = Math.floor((Math.random() * 12) + 1);
+    var blue = Math.floor((Math.random() * 12) + 1);
+    var yellow = Math.floor((Math.random() * 12) + 1);
+    var green = Math.floor((Math.random() * 12) + 1);
 
-// click function for red crystal to increment current score with red's random value
-$("#red").on("click",function() { 
-	currentScore += red
-	$("#userScore").html(currentScore);
-	console.log("user score= "+ currentScore);
-	winLose();
-});
+    // click function for red crystal to increment current score with red's random value
+    $("#red").on("click", function() {
+        currentScore += red
+        $("#userScore").html(currentScore);
+        console.log("user score= " + currentScore);
+        winLose();
+    });
 
-// click function for blue crystal to increment current score with blue's random value
-$("#blue").on("click",function() { 
-	currentScore += blue
-	$("#userScore").html(currentScore);
-	console.log("user score= "+ currentScore);
-	winLose();
-});
+    // click function for blue crystal to increment current score with blue's random value
+    $("#blue").on("click", function() {
+        currentScore += blue
+        $("#userScore").html(currentScore);
+        console.log("user score= " + currentScore);
+        winLose();
+    });
 
-// click function for yellow crystal to increment current score with yellow's random value
-$("#yellow").on("click",function() { 
-	currentScore += yellow
-	$("#userScore").html(currentScore);
-	console.log("user score= "+ currentScore);
-	winLose();
-});
+    // click function for yellow crystal to increment current score with yellow's random value
+    $("#yellow").on("click", function() {
+        currentScore += yellow
+        $("#userScore").html(currentScore);
+        console.log("user score= " + currentScore);
+        winLose();
+    });
 
-// click function for green crystal to increment current score with green's random value
-$("#green").on("click",function() { 
-	currentScore += green
-	$("#userScore").html(currentScore);
-	console.log("user score= "+ currentScore);
-	winLose();
-});
+    // click function for green crystal to increment current score with green's random value
+    $("#green").on("click", function() {
+        currentScore += green
+        $("#userScore").html(currentScore);
+        console.log("user score= " + currentScore);
+        winLose();
+    });
 
-// conditional function to check current score vs target number
-// how do I increment wins & losses?
-var wins = 0;
-var losses = 0;
-function winLose () {
-	if (currentScore === targetNumber) {
-		$("#wins").html("you win!");
-		alert("You win!");
-		wins = wins+1
-		$("#winCount").html(wins);
-		reset();
-	}
-	else if (currentScore >= targetNumber) {
-		$("#losses").html("you lose!");
-		alert("You lose!"+currentScore + "  " + targetNumber)
-		losses = losses+1
-		$("#lossCount").html(losses);
-		reset();
-	}
+    // conditional function to check current score vs target number
+    // and ultimately verify win or loss of game
+    var wins = 0;
+    var losses = 0;
 
-}
+    function winLose() {
+        if (currentScore === targetNumber) {
+            $("#gameResult").html("You win!");
+            alert("You win! Click a crystal to play again!");
+            wins = wins + 1
+            $("#winCount").html(wins);
+            reset();
+        } else if (currentScore >= targetNumber) {
+            $("#gameResult").html("You lose!");
+            alert("You lose! Click a crystal to play again!")
+            // alert("You lose!" + currentScore + "  " + targetNumber)
+            losses = losses + 1
+            $("#lossCount").html(losses);
+            reset();
+        }
 
+    }
 
+    // function to reset game
+    function reset() {
+        pageLoadRandom();
+        currentScore = 0;
+        $("#userScore").html(currentScore);
+        red = Math.floor((Math.random() * 12) + 1);
+        blue = Math.floor((Math.random() * 12) + 1);
+        yellow = Math.floor((Math.random() * 12) + 1);
+        green = Math.floor((Math.random() * 12) + 1);
 
-// function to reset game
-// -----------------------
-function reset () {
-	pageLoadRandom();
-	currentScore=0;
-	$("#userScore").html(currentScore);
-	red = Math.floor((Math.random() * 12) + 1);
-	blue = Math.floor((Math.random() * 12) + 1);
-	yellow = Math.floor((Math.random() * 12) + 1);
-	green = Math.floor((Math.random() * 12) + 1);
+    }
 
-}
-
-
-
-// function to initalize game
-// ---------------------------
-// function initialize() {
-
-// }
 
 });
 
@@ -140,5 +130,3 @@ function reset () {
 
 // redRandom();
 // -----------------------------------------
-
-
