@@ -38,7 +38,7 @@ $(document).ready(function() {
     $("#yellow").on("click", function() {
         currentScore += yellow
         $("#userScore").html(currentScore);
-        console.log("user score= " + currentScore);
+        console.log("user score= " + currentScore)
         winLose();
     });
 
@@ -57,18 +57,27 @@ $(document).ready(function() {
 
     function winLose() {
         if (currentScore === targetNumber) {
+
             $("#gameResult").html("You win!");
-            alert("You win! Click a crystal to play again!");
+            setTimeout(function(){
+                alert("You win! Click a crystal to play again!");
+                reset();
+            }, 300);
+            // alert("You win! Click a crystal to play again!");
             wins = wins + 1
             $("#winCount").html(wins);
             reset();
         } else if (currentScore >= targetNumber) {
             $("#gameResult").html("You lose!");
-            alert("You lose! Click a crystal to play again!")
+            setTimeout(function(){
+                alert("You lose! Click a crystal to play again!");
+                reset();
+            }, 300);
+            // alert("You lose! Click a crystal to play again!")
             // alert("You lose!" + currentScore + "  " + targetNumber)
             losses = losses + 1
             $("#lossCount").html(losses);
-            reset();
+            // reset();
         }
 
     }
